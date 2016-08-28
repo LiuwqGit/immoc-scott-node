@@ -2,6 +2,11 @@ var http = require('http');
 var cheerio = require('cheerio');
 var url = 'http://www.imooc.com/learn/348';
 
+/**
+ * 需要过滤出来的数据
+ * @param  {数组} html html页面
+ * @return {[type]}      [description]
+ */	
 function filterChapters(html) {
 	var $ = cheerio.load(html);
 	var chapters = $('.chapter');
@@ -49,6 +54,11 @@ function filterChapters(html) {
 
 }
 
+/**
+ * 打印需要输出的值	
+ * @param  {[type]} courseData [description]
+ * @return {[type]}            [description]
+ */
 function printCourseInfo(courseData) {
 	courseData.forEach(function(item) {
 		var chapterTitle = item.chapterTitle;
@@ -64,6 +74,11 @@ function printCourseInfo(courseData) {
 	});
 }
 
+/**
+ * nodejs中 http  get请求
+ * @param  {String} res) {	var        html [description]
+ * @return {[type]}      [description]
+ */
 http.get(url, function(res) {
 	var html = '';
 	res.on('data', function(data) {
