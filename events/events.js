@@ -45,4 +45,6 @@ life.on('methods', function(where) {
 life.on('methods', function(where) {
 	console.log('方法2' + where)
 });
+
 life.emit('listing', '1');
+life.emit('methods', '2');
