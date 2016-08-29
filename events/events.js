@@ -46,5 +46,10 @@ life.on('methods', function(where) {
 	console.log('方法2' + where)
 });
 
-life.emit('listing', '1');
-life.emit('methods', '2');
+var hasListingListener = life.emit('listing', '1');
+var hasMethodListener = life.emit('methods', '2');
+var hasOtherListener = life.emit('other', '2');
+
+console.log(hasListingListener);
+console.log(hasMethodListener);
+console.log(hasOtherListener);
