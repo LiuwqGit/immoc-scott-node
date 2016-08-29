@@ -8,7 +8,7 @@ var url = 'http://www.imooc.com/learn/348';
  * @return {[type]}      [description]
  */	
 function filterChapters(html) {
-	var $ = cheerio.load(html);
+	var $ = cheerio.load(html, {ignoreWhitespace: true});
 	var chapters = $('.chapter');
 
 	var courseData = [];
