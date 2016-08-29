@@ -47,7 +47,7 @@ life.on('methods', function(where) {
 });
 
 life.removeListener('listing', listing1);
-life.removeAllListeners();
+life.removeAllListeners('listing');
 
 var hasListingListener = life.emit('listing', '1');
 var hasMethodListener = life.emit('methods', '2');
