@@ -6,5 +6,8 @@ life.on('listing', function(who) {
 	console.log('1列表' + who );
 });
 
+life.on('listing', function(who) {
+	console.log('2列表' + who);
+});
 
 life.emit('listing', '1');
