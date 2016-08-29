@@ -51,6 +51,7 @@ life.on('methods', function(where) {
 // life.removeListener('listing', listing1);
 // life.removeAllListeners('listing');
 
+//第一个参数：实例的名字，第二个参数：具体某个事件的名字
 console.log(eventEmitter.listenerCount(life, 'listing'));
 // 
 var hasListingListener = life.emit('listing', '1');
