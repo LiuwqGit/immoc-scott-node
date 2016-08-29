@@ -15,21 +15,22 @@ function filterChapters(html) {
 		var chapterName = chapter.find('strong').text();
 		var videos = chapter.find('.video').children('li');
 
-		var chapterData = {
-			chapterName: chapterName,
-			videos : []
-		};
-		 
+		var videoData = [];
+
 		  videos.each(function(index, el) {
 		  	var video = $(this).find('.J-media-item');
 		  	var id = video.attr('href');
 		  	var title = video.text();
-		  	chapterData.videos.push({
+		  	videoData.push({
 		  		id: id,
 		  		title: title
 		  	});
 		  });
-		  courseData.push(chapterData);
+		  
+		  courseData.push({
+		  	chapterName: chapterName,
+		  	videos: videoData
+		  });
 	});
 
 	return courseData;
