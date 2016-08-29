@@ -1,4 +1,6 @@
+//EventEmitter 作用有两个，一个是事件的发射，一个是事件的监听
 var eventEmitter = require('events').EventEmitter;
+
 var life = new eventEmitter();
 //给EventEmitter设置最大监听数
 life.setMaxListeners(11);
@@ -46,9 +48,11 @@ life.on('methods', function(where) {
 	console.log('方法2' + where);
 });
 
-life.removeListener('listing', listing1);
-life.removeAllListeners('listing');
+// life.removeListener('listing', listing1);
+// life.removeAllListeners('listing');
 
+console.log(eventEmitter.listenerCount(life, 'listing'));
+// 
 var hasListingListener = life.emit('listing', '1');
 var hasMethodListener = life.emit('methods', '2');
 var hasOtherListener = life.emit('other', '2');
