@@ -38,4 +38,11 @@ life.on('listing', function(who) {
 life.on('listing', function(who) {
 	console.log('11列表' + who);
 });
+
+life.on('methods', function(where) {
+	console.log('方法1' + where)
+});
+life.on('methods', function(where) {
+	console.log('方法2' + where)
+});
 life.emit('listing', '1');
