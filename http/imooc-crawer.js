@@ -49,9 +49,6 @@ function filterChapters(html) {
 	// 		}
 	// 	}
 	// ]
-
-
-
 }
 
 /**
