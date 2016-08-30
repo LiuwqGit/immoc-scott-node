@@ -4,7 +4,7 @@ var http = require('http');
 var querystring = require('querystring');
 
 var postData = querystring.stringify({
-	'content': '我不能输入中文？',
+	'content': 'wo hen wu nai , bu neng shuo  zhong  wen ',
 	'cid': 348
 });
 
@@ -16,7 +16,7 @@ var options = {
 	headers: {
 		'Accept': 'application/json, text/javascript, */*; q=0.01',
 		'Accept-Encoding': 'gzip,deflate',
-		'Accept-Language': 'zh-CN,zh;q=0.8',
+		'Accept-Language': 'en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4',
 		'Cache-Control': 'no-cache',
 		'Connection': 'keep-alive',
 		'Content-Length': postData.length,
@@ -33,8 +33,8 @@ var options = {
 };
 
 var req = http.request(options, function(res) {
-	console.log('Status' + res.statusCode);
-	console.log('headers' + JSON.stringify(res.headers));
+	console.log('Status：' + res.statusCode);
+	console.log('headers：' + JSON.stringify(res.headers));
 
 
 	res.on('data', function(chunk) {
