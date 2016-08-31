@@ -1,0 +1,4 @@
+#node_modules文档忽略
+node_modules
+node_modules/
+
