@@ -3,10 +3,16 @@ var http = require('http');
 //可以将对象序列化
 var querystring = require('querystring');
 
-var postData = querystring.stringify({
-	'content': 'wo hen wu nai , bu neng shuo  zhong  wen ',
+// 
+// 把评论内容，单独作为一个对象传入
+// 
+// 
+var contentData = {
+	'content': '我要中文contentData,感谢支持!',
 	'cid': 348
-});
+};
+
+var postData = querystring.stringify(contentData);
 
 var options = {
 	hostname: 'www.imooc.com',
