@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.ball{
+			width: 100px;
+		    height: 100px;
+		    -moz-border-radius: 50px;
+		    -webkit-border-radius: 50px;
+		    border-radius: 50px;
+		}
+		.ball1{
+			background-color: green;
+		}
+		.ball2{
+			background-color: red;
+		}
+		.ball3{
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="ball ball1" style="margin-left:0;"></div>
+	<div class="ball ball2" style="margin-left:0;"></div>
+	<div class="ball ball3" style="margin-left:0;"></div>
+	<script type="text/javascript">
+		var ball1 = document.querySelector('.ball1');
+		var ball2 = document.querySelector('.ball2');
+		var ball3 = document.querySelector('.ball3');
+		
+
+		/**
+		 * 运动
+		 * @param  {[type]}   ball     要运动的物体
+		 * @param  {[type]}   distance 运动的目的地
+		 * @param  {Function} cb       回调函数
+		 * @return {[type]}            [description]
+		 */
+		function animate( ball, distance, cb) {
+			setTimeout(function() {
+				//ball的margin-left属性值的大小，以10进制解析
+				var marginLeft = parseInt(ball.style.marginLeft, 10);
+
+				if (marginLeft === distance) {
+					cb & cb();
+				} else {
+							if (marginLeft < distance) {
+								marginLeft++;
+							} else {
+								marginLeft--;
+					}
+					//这里需要添加 px ，才会有效果。
+					ball.style.marginLeft = marginLeft + 'px';
+					animate(ball, distance, cb);
+
+				}
+			}, 13)
+		};
+		// 方法一：使用定时器
+		animate(ball1, 100, function(){
+			animate(ball2, 200, function(){
+				animate(ball3, 300, function(){
+					animate(ball3, 150, function(){
+						animate(ball2, 150, function(){
+							animate(ball1, 150, function(){
+								});
+							});
+						});
+					});
+				});
+			});
+
+	</script>
+</body>
+</html>
