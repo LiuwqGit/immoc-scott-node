@@ -21,6 +21,7 @@
 			background-color: blue;
 		}
 	</style>
+	<script type="text/javascript" src="./node_modules/bluebird/js/browser/bluebird.js"></script>
 </head>
 <body>
 	<div class="ball ball1" style="margin-left:0;"></div>
@@ -60,18 +61,62 @@
 			}, 13)
 		};
 		// 方法一：使用定时器
-		animate(ball1, 100, function(){
-			animate(ball2, 200, function(){
-				animate(ball3, 300, function(){
-					animate(ball3, 150, function(){
-						animate(ball2, 150, function(){
-							animate(ball1, 150, function(){
-								});
-							});
-						});
-					});
-				});
+		// animate(ball1, 100, function(){
+		// 	animate(ball2, 200, function(){
+		// 		animate(ball3, 300, function(){
+		// 			animate(ball3, 150, function(){
+		// 				animate(ball2, 150, function(){
+		// 					animate(ball1, 150, function(){
+		// 						});
+		// 					});
+		// 				});
+		// 			});
+		// 		});
+		// 	});
+
+		//方法二： 使用Promise
+		//定义Promise使用大写。
+		var Promise = window.Promise;
+
+		function promiseAnimate(ball, distance) {
+			return new Promise(function(resolve, reject) {
+
+				function _animate() {
+					setTimeout(function() {
+						//ball的margin-left属性值的大小，以10进制解析
+						var marginLeft = parseInt(ball.style.marginLeft, 10);
+
+						if (marginLeft === distance) {
+							resolve();
+						} else {
+									if (marginLeft < distance) {
+										marginLeft++;
+									} else {
+										marginLeft--;
+							}
+							//这里需要添加 px ，才会有效果。
+							ball.style.marginLeft = marginLeft + 'px';
+							_animate();
+
+						}
+					}, 13);
+				};
+				_animate();
 			});
+		};
+
+		promiseAnimate(ball1, 100).then(function() {
+			return promiseAnimate(ball2, 200);
+		}).then(function() {
+			return promiseAnimate(ball3, 300);
+		}).then(function() {
+			return promiseAnimate(ball3, 150);
+		}).then(function() {
+			return promiseAnimate(ball2, 150);
+		}).then(function() {
+			return promiseAnimate(ball1, 150);
+		});
+
 
 	</script>
 </body>
