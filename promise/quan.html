@@ -68,8 +68,8 @@
     function promiseAnimate(ball, distance){
       return new Promise(function(resolve, reject){
         function _animate() {
-      setTimeout(function(){
-          var marginLeft = parseInt(ball.style.marginLeft, 10);
+          setTimeout(function(){
+              var marginLeft = parseInt(ball.style.marginLeft, 10);
 
           if (marginLeft === distance) {
             resolve();
@@ -80,12 +80,12 @@
               marginLeft--;
             }
             // 将改变后的marginLeft赋给ball
-          ball.style.marginLeft = marginLeft + 'px';
-          _animate();
-        }
-      }, 13);
-    }
-    _animate(); 
+            ball.style.marginLeft = marginLeft + 'px';
+            _animate();
+          }
+        }, 13);
+      }
+      _animate(); 
       });
     }
 
