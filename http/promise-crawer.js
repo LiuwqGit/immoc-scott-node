@@ -15,25 +15,31 @@ function filterChapters(html) {
 	var chapters = $('.chapter');
 
 	var title = $('.path span').text();
-	var number = $('.statics clearfix .static-item l .meta-value js-learn-num').text();
-
+	// var number = $('.statics clearfix .static-item l .meta-value js-learn-num').text();
+	// 获取已经学习的人数
+	// ps: 因为在网页源代码中，已经学习人数，并没有展示出来，所以，获取不到。
+	var number = $('.statics clearfix .static-item l score-btn .meta-value').text();
+	//要组装的数据结构
 	var courseData = {
 		title: title,
 		number: number,
 		videos: []
 	};
 
+	//	循环章节信息
 	chapters.each(function(item) {
 		var chapter = $(this);
 		var chapterTitle = chapter.find('strong').text();
 
+		//	找到所有的video
 		var videos = chapter.find('.video').children('li');
 
+		//章节信息courseData中videos数组的数据结构
 		var chapterData = {
 			chapterTitle: chapterTitle,
 			videos: []
 		};
-
+		// 循环video,将需要的信息组装
 		videos.each(function(item) {
 			var video = $(this).find('.J-media-item');
 			var videoTitle = video.text();
@@ -44,6 +50,7 @@ function filterChapters(html) {
 				id:  videoId
 			});
 		});
+		//将组装好的videos添加到想要的数据结构中
 		courseData.videos.push(chapterData);
 
 	});
@@ -92,7 +99,14 @@ function printCourseInfo(coursesData) {
 	});
 }
 
+
+/**
+ * 异步获取页面数据
+ * @param  {[type]} url [description]
+ * @return {[type]}     [description]
+ */
 function getPageAsync(url) {
+	//实例化一个Promise方法
 	return new Promise(function(resolve, reject) {
 		console.log('正在爬取 ' + url);
 		 /**
@@ -102,13 +116,14 @@ function getPageAsync(url) {
 		 */
 		http.get(url, function(res) {
 			var html = '';
+			//get请求中的data事件
 			res.on('data', function(data) {
 					html += data;
 			});
+			//get请求中的end事件
 			res.on('end', function() {
 				resolve(html);
 				// var courseData = filterChapters(html);
-
 				// printCourseInfo(courseData);
 			});
 		}).on('error', function(e) {
@@ -121,9 +136,12 @@ function getPageAsync(url) {
 var fetchCourseArray = [];
 
 videoIds.forEach(function(id) {
+	//将需要抓取的网页数据添加到数组中
 	fetchCourseArray.push(getPageAsync(baseUrl + id));
 });
 
+
+//主方法函数
 Promise
 	.all(fetchCourseArray)
 	.then(function(pages) {
@@ -134,6 +152,8 @@ Promise
 			coursesData.push(courses);
 		});
 
+
+		//排序，将学习人数多的排前面
 		coursesData.sort(function(a , b) {
 			return a.number < b.number;
 		});
