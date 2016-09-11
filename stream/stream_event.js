@@ -2,7 +2,7 @@
 var fs = require('fs');
 
 //读取文件，创建读取流
-var readStream = fs.createReadStream('stream_copy_logo.js');
+var readStream = fs.createReadStream('haiou.jpg');
  
 var n = 0;
 
@@ -21,7 +21,7 @@ readStream
 			console.log('data pause end');
 			//重启 可读流
 			readStream.resume();
-		}, 3000);
+		}, 10);
 	})
 	.on('readable', function(){
 		console.log('data readable');
