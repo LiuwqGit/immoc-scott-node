@@ -7,12 +7,18 @@ var querystring = require('querystring');
 // 把评论内容，单独作为一个对象传入
 // 
 // 
-var contentData = {
-	'content': '我要中文contentData,感谢支持!',
-	'cid': 348
-};
+// var contentData = {
+// 	'content': '我要中文contentData,感谢支持!',
+// 	'cid': 348
+// };
 
-var postData = querystring.stringify(contentData);
+// var postData = querystring.stringify(contentData);
+
+var postData = querystring.stringify({
+	'content':'中文字符串',
+	'cid':'348'
+});
+console.log(postData);
 
 var options = {
 	hostname: 'www.imooc.com',
