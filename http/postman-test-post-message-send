@@ -1,0 +1,35 @@
+var http = require("http");
+
+var options = {
+  "method": "POST",
+  "hostname": "10.10.17.16",
+  "port": "30005",
+  "path": "/api/message/send",
+  "headers": {
+    "content-type": "application/json",
+    "cache-control": "no-cache",
+    "postman-token": "4f3f49c0-4394-d944-b733-7f748e6b3f5c"
+  }
+};
+
+var req = http.request(options, function (res) {
+  var chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+    console.log('chunks: ' + chunks);
+  });
+
+  res.on("end", function () {
+    var body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.write(JSON.stringify({ meetingId: 'string222222222222222222',
+  msgContent: 'qwer',
+  msgType: 0,
+  senderId: 'qwer',
+  senderImage: 'qwer',
+  senderName: 'qwer' }));
+req.end();
