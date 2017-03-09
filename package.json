@@ -1,0 +1,29 @@
+{
+  "name": "immoc-scott-node",
+  "version": "1.0.0",
+  "description": "immoc scott node learning",
+  "main": "server.js",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "cheerio": "^0.22.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LiuwqGit/immoc-scott-node.git"
+  },
+  "keywords": [
+    "node",
+    "javascript"
+  ],
+  "author": "liuweiqin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LiuwqGit/immoc-scott-node/issues"
+  },
+  "homepage": "https://github.com/LiuwqGit/immoc-scott-node#readme"
+}
